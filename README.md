@@ -50,8 +50,8 @@ This is a simple PHP backend project built without using any framework. It inclu
 
    ```plaintext
     APP_ENV=development
-   DB_HOST=localhost
-   DB_NAME=my_database
+    DB_HOST=localhost
+    DB_NAME=my_database
 
    ```
 
