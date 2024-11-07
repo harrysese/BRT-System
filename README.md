@@ -40,3 +40,24 @@ This is a simple PHP backend project built without using any framework. It inclu
    ```
 
 4. **Create `.env` File for Environment Variables**
+
+   ```bash
+   touch .env
+
+   ```
+
+   **Add environment variables in `.env`:**
+
+   ```plaintext
+    APP_ENV=development
+   DB_HOST=localhost
+   DB_NAME=my_database
+
+   ```
+
+5. **Run the Development Server**
+
+```bash
+  php -S localhost:8000 -t public
+
+```
