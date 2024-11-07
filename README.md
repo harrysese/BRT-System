@@ -20,8 +20,8 @@ This is a simple PHP backend project built without using any framework. It inclu
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/my-php-backend.git
-   cd my-php-backend
+   git clone https://github.com/No-bodyq/BRT-System.git
+   cd backend
 
    ```
 
