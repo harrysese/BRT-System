@@ -1,0 +1,43 @@
+# Ignore Composer's vendor directory
+/vendor/
+
+# Ignore environment configuration files
+.env
+
+# Ignore log files
+/logs/
+
+# Ignore IDE specific files
+/.idea/
+/.vscode/
+
+# Ignore OS specific files
+.DS_Store
+Thumbs.db
+
+# Ignore build or temporary files
+/.build/
+/tmp/
+/*.log
+
+# Ignore PHPUnit test cache
+.phpunit.result.cache
+
+# Ignore composer.lock file for dependency versions (optional)
+composer.lock
+
+# Ignore PHPStorm specific files
+.idea/
+
+# Ignore composer cache
+/composer.phar
+
+# Ignore coverage reports
+/coverage/
+
+# Ignore node_modules 
+/node_modules/
+
+# Ignore any other files you might not want to commit
+*.bak
+*.swp

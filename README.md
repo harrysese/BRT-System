@@ -31,3 +31,12 @@ This is a simple PHP backend project built without using any framework. It inclu
    composer install
 
    ```
+
+3. **Install Dependencies**
+
+   ```bash
+   composer require vlucas/phpdotenv monolog/monolog
+
+   ```
+
+4. **Create `.env` File for Environment Variables**
