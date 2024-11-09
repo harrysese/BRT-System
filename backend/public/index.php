@@ -10,28 +10,22 @@ $dotenv->load();
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
+use App\Router;
+use App\controllers\userController;
+
 $log = new Logger('my-php-backend');
 $log->pushHandler(new StreamHandler(__DIR__ . '/../logs/app.log', Logger::DEBUG));
 
 // Log the start of the application
 $log->info('Application has started');
 
-// Parse the current URI
-$uri = trim($_SERVER['REQUEST_URI'], '/');
+// Include main API route file
+require_once __DIR__ . '/../routes/api.php';
 
-// Basic Routing
-if ($uri === '') {
-    // Route: Home
-    echo "Welcome to the PHP Backend!";
-    $log->info("Accessed the home route");
-} elseif ($uri === 'api/hello') {
-    // Route: API Hello
-    header('Content-Type: application/json');
-    echo json_encode(["message" => "Hello, World!"]);
-    $log->info("Accessed the /api/hello route");
-} else {
-    // Route: 404 Not Found
-    header('Content-Type: application/json', true, 404);
-    echo json_encode(["error" => "Route not found"]);
-    $log->warning("Attempted to access an unknown route: /{$uri}");
-}
+// Get the current HTTP method and path
+$method = $_SERVER['REQUEST_METHOD'];
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+// Resolve the request
+$router->resolve($method, $path);
+

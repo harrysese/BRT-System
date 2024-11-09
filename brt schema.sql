@@ -1,6 +1,6 @@
 CREATE TABLE USERS(
 	UserID SERIAL PRIMARY KEY,
-	Name TEXT,
+	UserName TEXT,
 	PhoneNo TEXT,
 	Email TEXT,
 	Password TEXT
