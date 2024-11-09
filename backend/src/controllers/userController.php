@@ -20,7 +20,7 @@ class UserController {
     }
 
     public function getUserById($id) {
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = :id");
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE userid = :id");
         $stmt->execute(['id' => $id]);
         $user = $stmt->fetch();
 
@@ -56,4 +56,49 @@ class UserController {
             return json_encode(['error' => 'Registration failed: ' . $e->getMessage()]);
         }
     }
+
+    public function authenticateUser($username, $password) {
+        $stmt = $this->db->prepare("SELECT password FROM users WHERE username = :username");
+        $stmt->execute([':username' => $username]);
+        $user = $stmt->fetch();
+    
+        if ($user && password_verify($password, $user['password'])) {
+            // Start session and set user as authenticated
+            session_start();
+            $_SESSION['username'] = $username;
+            echo "User authenticated successfully!";
+            return true;
+        } else {
+            echo "Authentication failed: Incorrect username or password.";
+            return false;
+        }
+    }
+    
+    public function updateUser($id, $username, $password, $email) {
+        $sql = "UPDATE users SET username = :username, email = :email, password = :password WHERE userid = :id";
+        $stmt = $this->db->prepare($sql);
+
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        
+        $stmt->execute([
+            ':username' => $username,
+            ':email' => $email,
+            ':id' => $id,
+            ':password' => $hashedPassword
+        ]);
+        
+        return $stmt->rowCount() > 0; // Returns true if any rows were affected
+    }
+
+    public function deleteUser($id) {
+        $sql = "DELETE FROM users WHERE userid = :id";
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->execute([
+            ':id' => $id
+        ]);
+
+        return $stmt->rowCount() > 0; // Returns true if any rows were affected
+    }
 }
+

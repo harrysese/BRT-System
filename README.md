@@ -51,7 +51,10 @@ This is a simple PHP backend project built without using any framework. It inclu
    ```plaintext
     APP_ENV=development
     DB_HOST=localhost
-    DB_NAME=my_database
+    DB_NAME=<databasename> //your database name
+    DB_PORT=<port> //usually 5432
+    DB_PASSWORD=<dbpassword> //your database password
+    DB_USER="dbuser" //your database username
 
    ```
 

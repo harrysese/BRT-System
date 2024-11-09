@@ -5,6 +5,8 @@ class Router {
     private $routes = [
         'GET' => [],
         'POST' => [],
+        'PUT' => [],
+        'DELETE' => [],
     ];
 
     public function get($path, $callback) {
@@ -13,6 +15,14 @@ class Router {
 
     public function post($path, $callback) {
         $this->routes['POST'][$path] = $callback;
+    }
+
+    public function put($path, $callback){
+        $this->routes['PUT'][$path] = $callback;
+    }
+
+    public function delete($path, $callback){
+        $this->routes['DELETE'][$path] = $callback;
     }
 
 
