@@ -12,7 +12,7 @@ use Monolog\Handler\StreamHandler;
 
 use App\Router;
 use App\controllers\userController;
-
+use App\controllers\busController;
 $log = new Logger('my-php-backend');
 $log->pushHandler(new StreamHandler(__DIR__ . '/../logs/app.log', Logger::DEBUG));
 

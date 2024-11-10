@@ -27,25 +27,26 @@ class Router {
 
 
     public function resolve($method, $path) {
-        // Check exact match first
+        $path = rtrim($path, '/');
         if (isset($this->routes[$method][$path])) {
             call_user_func($this->routes[$method][$path]);
             return;
         }
     
-        // Check dynamic routes
         foreach ($this->routes[$method] as $route => $callback) {
             $pattern = preg_replace('/\{[a-zA-Z0-9_]+\}/', '([a-zA-Z0-9_]+)', $route);
             if (preg_match("#^$pattern$#", $path, $matches)) {
-                array_shift($matches);  // Remove the full match
-                call_user_func_array($callback, $matches);  // Pass route parameters
+                array_shift($matches);
+                call_user_func_array($callback, $matches);
                 return;
             }
         }
     
-        // 404 if no match found
+        // Debugging information if no match is found
+        error_log("404 - Route not found: [$method] $path");
         http_response_code(404);
         echo "404 - Not Found";
     }
+    
     
 }
